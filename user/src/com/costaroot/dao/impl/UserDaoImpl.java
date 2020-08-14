@@ -3,31 +3,28 @@ package com.costaroot.dao.impl;
 import com.costaroot.dao.UserDao;
 import com.costaroot.model.User;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.HashSet;
+import java.util.Set;
 
 public class UserDaoImpl implements UserDao {
-    private static Map<User,Integer> users = new HashMap<>();
+    // private static Map<User,Integer> users = new HashMap<>();
     private static UserDaoImpl userDao = new UserDaoImpl();
-    private static int id = 0;
+    private static Set<User> users = new HashSet<>();
 
     private UserDaoImpl() {
     }
 
-    public static UserDaoImpl getInstance(){
+    public static UserDaoImpl getInstance() {
         return userDao;
     }
+
     static {
-        users.put(new User("admin","admin",0),id);
-        id++;
+        users.add(new User("Dmytro", "Kostiukevych", 27));
     }
 
     @Override
     public void addUser(User user) {
-        users.put(user,id);
-        id++;
+        users.add(user);
     }
 
     @Override
@@ -43,8 +40,8 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void showAll() {
         System.out.println("-------------");
-        users.keySet().
+        users.
                 stream().
-                forEach(u-> System.out.println(u));
+                forEach(u -> System.out.println(u));
     }
 }

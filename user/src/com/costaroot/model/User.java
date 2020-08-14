@@ -49,7 +49,12 @@ public class User {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, sureName, age);
+        int hash;
+        int prime = 29;
+        hash = name.hashCode();
+        hash = prime * hash + age;
+        hash = prime * hash +sureName.hashCode();
+        return hash;
     }
 
     @Override
